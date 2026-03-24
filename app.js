@@ -1,44 +1,28 @@
 // -------------------------------------
 // Fetch Water Temperature (USACE WTTO2)
 // -------------------------------------
+// -----------------------------------------------------
+// REAL-TIME WATER TEMPERATURE FOR WTTO2 (USACE CSV FEED)
+// -----------------------------------------------------
 async function getWaterTemperature() {
   try {
     const url = "https://www.swt-wc.usace.army.mil/webdata/gagedata/WTTO2.csv";
     const res = await fetch(url);
-    const csvText = await res.text();
 
-    const lines = csvText.trim().split("\n");
-
-    // Last line = latest data reading
-    const lastLine = lines[lines.length - 1];
-
-    // Split CSV columns by comma
-    const cols = lastLine.split(",");
-
-    // USACE CSV includes water temp under column 'WTR-TEMP'
-    // Typically this is at column index 5 or 6 depending on the station layout.
-    // We search for it dynamically in the header.
-
-    // Parse header row
-    const header = lines[0].split(",");
-    const tempIndex = header.indexOf("WTR-TEMP");
-
-    if (tempIndex === -1) {
-      document.getElementById("waterTemp").textContent = "Temperature not available";
-      console.error("WTR-TEMP column not found:", header);
-      return;
+    // If fetch fails (CORS or network), throw error
+    if (!res.ok) {
+      throw new Error("USACE CSV fetch failed");
     }
 
-    const waterTemp = cols[tempIndex];
+    const csvText = await res.text();
 
-    document.getElementById("waterTemp").textContent =
-      waterTemp ? `${waterTemp} °F` : "No data available";
+    // Split CSV into rows
+    const lines = csvText.trim().split("\n");
 
-  } catch (err) {
-    document.getElementById("waterTemp").textContent = "Error loading data";
-    console.error("WTTO2 CSV fetch error:", err);
-  }
-}
+    // First row contains column headers
+    const header = lines[0].split(",");
+
+
 
 // -------------------------------------
 // Fetch Air Temperature (OpenWeatherMap)
