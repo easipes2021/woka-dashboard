@@ -68,5 +68,5 @@ async function getAirTemperature() {
 ``
 
 // Auto-run both functions on page load
-getWaterTemperature();
+//getWaterTemperature(); //Disable this for now
 getAirTemperature();
