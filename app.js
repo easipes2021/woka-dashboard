@@ -106,45 +106,37 @@ async function loadLakeFrancisGraph() {
     ],
   },
   options: {
-    responsive: true,
-    maintainAspectRatio: false,
+  responsive: true,
+  maintainAspectRatio: false,
 
-    // ✅ Enables scrubbing and point inspection
-    interaction: {
-      mode: "index",
-      intersect: false,
-    },
-
-    plugins: {
-      tooltip: {
-        enabled: true,
-        callbacks: {
-          label: function (context) {
-            return `${context.parsed.y} ft`;
-          },
-        },
-      },
-      legend: {
-        display: true,
-      },
-    },
-
-    scales: {
-      y: {
-        title: {
-          display: true,
-          text: "Feet",
-        },
-      },
-      x: {
-        title: {
-          display: true,
-          text: "Date",
-        },
-      },
-    },
+  // ✅ Best possible mobile scrubbing
+  interaction: {
+    mode: "index",
+    intersect: false,
   },
-});
+
+  plugins: {
+    tooltip: {
+      enabled: true,
+      displayColors: false,
+      bodyFont: { size: 16 },  // ✅ Bigger text on mobile
+      titleFont: { size: 14 }
+    },
+    legend: {
+      display: true
+    }
+  },
+
+  scales: {
+    x: {
+      title: { display: true, text: "Date" },
+      ticks: { autoSkip: true, maxRotation: 0 }
+    },
+    y: {
+      title: { display: true, text: "Feet" }
+    }
+  }
+}
 
 async function loadLakeFrancisCurrent() {
   const url =
