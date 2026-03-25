@@ -128,6 +128,29 @@ async function loadLakeFrancisGraph() {
   }
 }
 
+async function loadLakeFrancisCurrent() {
+  const url =
+    "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065";
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    const value =
+      data.value.timeSeries[0].values[0].value[0].value;
+
+    document.getElementById("lakeFrancisCurrent").textContent =
+      value + " ft";
+
+  } catch (err) {
+    console.error("Error loading Lake Francis current level:", err);
+    document.getElementById("lakeFrancisCurrent").textContent =
+      "Error loading data";
+  }
+}
+
+loadLakeFrancisCurrent();
+
 // Run it
 loadLakeFrancisGraph();
 
