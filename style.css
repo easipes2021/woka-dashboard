@@ -44,7 +44,14 @@ p {
   background-color: #005fa3;
 }
 
-#lakeFrancisChart {
-  height: 400px !important;
-  max-height: 400px !important;
+.chart-container {
+  position: relative;
+  height: 400px;
+  max-height: 400px;
+  width: 100%;
+  overflow: hidden; /* ✅ Prevents runaway growth */
 }
+
+#lakeFrancisChart {
+  height: 100% !important;
+  width: 100% 
