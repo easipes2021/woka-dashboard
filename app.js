@@ -1,3 +1,4 @@
+console.log("App.js is running");
 // -------------------------------------
 // Fetch Water Temperature (USACE WTTO2)
 // -------------------------------------
