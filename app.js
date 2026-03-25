@@ -67,6 +67,71 @@ async function getAirTemperature() {
 }
 ``
 
+async function loadLakeFrancisGraph() {
+  const url =
+    "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&period=P7D";
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    // Navigate JSON to retrieve time-series data
+    const values =
+      data.value.timeSeries[0].values[0].value.map((v) => ({
+        time: v.dateTime,
+        height: parseFloat(v.value),
+      }));
+
+    // Create arrays for the chart
+    const labels = values.map((v) => new Date(v.time).toLocaleDateString());
+    const heights = values.map((v) => v.height);
+
+    // Render Chart
+    const ctx = document.getElementById("lakeFrancisChart");
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: "Gage Height (ft)",
+            data: heights,
+            borderColor: "#0077cc",
+            backgroundColor: "rgba(0, 119, 204, 0.3)",
+            borderWidth: 2,
+            pointRadius: 0,
+            tension: 0.3,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text: "Feet",
+            },
+          },
+          x: {
+            title: {
+              display: true,
+              text: "Date",
+            },
+          },
+        },
+      },
+    });
+  } catch (err) {
+    console.error("Error loading Lake Francis data:", err);
+  }
+}
+
+// Run it
+loadLakeFrancisGraph();
+
 // Auto-run both functions on page load
 //getWaterTemperature(); //Disable this for now
 getAirTemperature();
+
