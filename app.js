@@ -90,43 +90,61 @@ async function loadLakeFrancisGraph() {
     const ctx = document.getElementById("lakeFrancisChart");
 
     new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "Gage Height (ft)",
-            data: heights,
-            borderColor: "#0077cc",
-            backgroundColor: "rgba(0, 119, 204, 0.3)",
-            borderWidth: 2,
-            pointRadius: 0,
-            tension: 0.3,
-          },
-        ],
+  type: "line",
+  data: {
+    labels: labels,
+    datasets: [
+      {
+        label: "Gage Height (ft)",
+        data: heights,
+        borderColor: "#0077cc",
+        backgroundColor: "rgba(0, 119, 204, 0.3)",
+        borderWidth: 2,
+        pointRadius: 0,
+        tension: 0.3,
       },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            title: {
-              display: true,
-              text: "Feet",
-            },
-          },
-          x: {
-            title: {
-              display: true,
-              text: "Date",
-            },
+    ],
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    // ✅ Enables scrubbing and point inspection
+    interaction: {
+      mode: "index",
+      intersect: false,
+    },
+
+    plugins: {
+      tooltip: {
+        enabled: true,
+        callbacks: {
+          label: function (context) {
+            return `${context.parsed.y} ft`;
           },
         },
       },
-    });
-  } catch (err) {
-    console.error("Error loading Lake Francis data:", err);
-  }
-}
+      legend: {
+        display: true,
+      },
+    },
+
+    scales: {
+      y: {
+        title: {
+          display: true,
+          text: "Feet",
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: "Date",
+        },
+      },
+    },
+  },
+});
 
 async function loadLakeFrancisCurrent() {
   const url =
