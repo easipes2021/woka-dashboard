@@ -69,10 +69,6 @@ def historic():
 
 @app.get("/historic-converted")
 def historic_converted():
-    """
-    Returns 7 days of timestamps + stage + converted CFS.
-    Derived from paired_stage_flow.csv but applies the live rating curve.
-    """
     import pandas as pd
     import os
 
@@ -82,10 +78,11 @@ def historic_converted():
 
     df = pd.read_csv(csv_path)
 
-    # Convert timestamps to ISO strings (optional but recommended)
-    df["timestamp"] = pd.to_datetime(df["dt"]).astype(str)
+    # Parse timestamps + sort properly
+    df["timestamp"] = pd.to_datetime(df["dt"], utc=True)
+    df = df.sort_values("timestamp")
 
-    # Apply the rating curve to generate converted CFS
+    # Apply rating curve to compute converted CFS
     def convert(h):
         if h <= H_BREAK:
             return A_LOW * (h ** B_LOW)
@@ -94,10 +91,11 @@ def historic_converted():
 
     df["converted_cfs"] = df["value_H"].apply(convert)
 
-    # Return only the last 7 days (~1008 records at 10–15 min intervals)
-    last_week = df.tail(1000)
+    # ✅ Filter only real last 7 days
+    seven_days_ago = df["timestamp"].max() - pd.Timedelta(days=7)
+    recent = df[df["timestamp"] >= seven_days_ago]
 
-    return last_week[["timestamp", "value_H", "converted_cfs"]].to_dict(orient="records")
+    return recent[["timestamp", "value_H", "converted_cfs"]].to_dict(orient="records")
 
 
 
