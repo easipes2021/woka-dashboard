@@ -57,3 +57,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}
+
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("rating-api")
+
+@app.get("/flow")
+def flow(stage: float):
+    logger.info(f"Flow endpoint called with stage={stage}")
+    ...
