@@ -78,13 +78,11 @@ def historic_converted():
 
     df = pd.read_csv(csv_path)
 
-    # Parse timestamps, ensure UTC
+    # Convert and sort timestamps
     df["timestamp"] = pd.to_datetime(df["dt"], utc=True)
-
-    # ✅ Sort by timestamp
     df = df.sort_values("timestamp")
 
-    # ✅ Apply rating curve
+    # Apply rating curve
     def convert(h):
         if h <= H_BREAK:
             return A_LOW * (h ** B_LOW)
@@ -93,12 +91,12 @@ def historic_converted():
 
     df["converted_cfs"] = df["value_H"].apply(convert)
 
-    # ✅ Filter last 7 days properly
+    # Filter last 7 days
     latest = df["timestamp"].max()
-    seven_days_ago = latest - pd.Timedelta(days=7)
-    df_recent = df[df["timestamp"] >= seven_days_ago]
+    week_ago = latest - pd.Timedelta(days=7)
+    df = df[df["timestamp"] >= week_ago]
 
-    return df_recent[["timestamp", "value_H", "converted_cfs"]].to_dict(orient="records")
+    return df[["timestamp", "value_H", "converted_cfs"]].to_dict(orient="records")
 
 
 
