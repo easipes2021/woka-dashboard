@@ -1,0 +1,32 @@
+name: Fetch USGS 07195430 Data
+
+on:
+  workflow_dispatch:   # Allows manual runs
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run fetch script
+        env:
+          USGS_API_KEY: ${{ secrets.USGS_API_KEY }}
+        run: python scripts/fetch_usgs_07195430.py
+
+      - name: Commit updated data file
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add data/07195430.json
+          git commit -m "Update USGS 07195430 dataset" || echo "No changes"
+          git push
