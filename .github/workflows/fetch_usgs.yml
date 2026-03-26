@@ -1,24 +1,27 @@
 name: Fetch USGS Data
 
 on:
-  workflow_dispatch:   # Allows you to run manually
+  workflow_dispatch:        # Manual trigger
   schedule:
-    - cron: "0 3 * * *"   # Runs every day at 3:00 AM UTC
+    - cron: "0 3 * * *"     # Daily at 3 AM UTC
 
 jobs:
   fetch-usgs:
     runs-on: ubuntu-latest
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true   # ✅ Use Node 24 now
+      # ✅ Force all JavaScript-based actions to use Node.js 24
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
     - name: Check out repository
-      uses: actions/checkout@v4   # ✅ Node 24-compatible version
+      # ✅ Node 24–compatible version
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v5   # ✅ Node 24-compatible version
+      # ✅ Node 24–compatible version
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: '3.12'
 
     - name: Install dependencies
       run: |
@@ -26,7 +29,7 @@ jobs:
 
     - name: Fetch USGS Data
       env:
-        USGS_API_KEY: ${{ secrets.USGS_API_KEY }}   # ✅ Your secure key
+        USGS_API_KEY: ${{ secrets.USGS_API_KEY }}
       run: |
         python scripts/fetch_usgs_data.py
 
