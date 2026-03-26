@@ -229,8 +229,8 @@ async function drawConvertedGraph() {
           borderWidth: 2,
           pointRadius: 0,
           tension: 0.3
-        },
-      ],
+        }
+      ]
     },
     options: {
       responsive: true,
@@ -238,7 +238,7 @@ async function drawConvertedGraph() {
 
       interaction: {
         mode: "index",
-        intersect: false,
+        intersect: false
       },
 
       plugins: {
@@ -246,49 +246,27 @@ async function drawConvertedGraph() {
           enabled: true,
           displayColors: false,
           bodyFont: { size: 16 },
-          titleFont: { size: 14 },
+          titleFont: { size: 14 }
         },
-        legend: { display: true },
+        legend: { display: true }
       },
 
       scales: {
         x: {
           title: { display: true, text: "Date" },
-          ticks: { autoSkip: true, maxRotation: 0 },
+          ticks: { autoSkip: true, maxRotation: 0 }
         },
         y: {
-          title: { display: true, text: "CFS" },
-        },
-      },
-    },
+          title: { display: true, text: "CFS" }
+        }
+      }
+    }
   });
 
-  // ✅ Mobile + desktop scrub readout
+  // ✅ Mobile + desktop scrub readout (ONLY ONE COPY)
   const scrub = document.getElementById("convertedScrub");
 
   function updateReadout(event) {
-    const pointsAtEvent = convertedChart.getElementsAtEventForMode(
-      event,
-      "index",
-      { intersect: false },
-      true
-    );
-
-    if (pointsAtEvent.length) {
-      const i = pointsAtEvent[0].index;
-      const cfs = cfsValues[i].toFixed(0);
-      scrub.textContent = `${labels[i]} — ${cfs} CFS`;
-    }
-  }
-
-  ctx.addEventListener("mousemove", updateReadout);
-  ctx.addEventListener("touchmove", updateReadout);
-}
-
-  // ✅ Touch + mouse scrub readout (mobile-friendly)
-  const scrub = document.getElementById("convertedScrub");
-
-  function updateConvertedReadout(event) {
     const pointsAtEvent = convertedChart.getElementsAtEventForMode(
       event,
       "index",
@@ -302,8 +280,8 @@ async function drawConvertedGraph() {
     }
   }
 
-  ctx.addEventListener("mousemove", updateConvertedReadout);
-  ctx.addEventListener("touchmove", updateConvertedReadout);
+  ctx.addEventListener("mousemove", updateReadout);
+  ctx.addEventListener("touchmove", updateReadout);
 }
 
 
