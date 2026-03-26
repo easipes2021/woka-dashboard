@@ -67,7 +67,37 @@ def historic():
     return df.to_dict(orient="records")
 
 
+@app.get("/historic-converted")
+def historic_converted():
+    """
+    Returns 7 days of timestamps + stage + converted CFS.
+    Derived from paired_stage_flow.csv but applies the live rating curve.
+    """
+    import pandas as pd
+    import os
 
+    csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "paired_stage_flow.csv")
+    if not os.path.exists(csv_path):
+        raise HTTPException(status_code=404, detail="paired_stage_flow.csv not found.")
+
+    df = pd.read_csv(csv_path)
+
+    # Convert timestamps to ISO strings (optional but recommended)
+    df["timestamp"] = pd.to_datetime(df["dt"]).astype(str)
+
+    # Apply the rating curve to generate converted CFS
+    def convert(h):
+        if h <= H_BREAK:
+            return A_LOW * (h ** B_LOW)
+        else:
+            return A_HIGH * (h ** B_HIGH)
+
+    df["converted_cfs"] = df["value_H"].apply(convert)
+
+    # Return only the last 7 days (~1008 records at 10–15 min intervals)
+    last_week = df.tail(1000)
+
+    return last_week[["timestamp", "value_H", "converted_cfs"]].to_dict(orient="records")
 
 
 
