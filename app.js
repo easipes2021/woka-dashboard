@@ -186,6 +186,45 @@ async function getLiveCFS(stageFt) {
 }
 
 
+async function loadConvertedHistoric() {
+  const resp = await fetch("https://YOUR-RENDER-APP.onrender.com/historic-converted");
+  const data = await resp.json();
+  return data;
+}
+async function drawConvertedGraph() {
+  const points = await loadConvertedHistoric();
+
+  const labels = points.map(p => new Date(p.timestamp).toLocaleString());
+  const cfsValues = points.map(p => p.converted_cfs);
+
+  const ctx = document.getElementById("convertedChart");
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels,
+      datasets: [{
+        label: "Converted Flow (CFS)",
+        data: cfsValues,
+        borderColor: "#0077cc",
+        backgroundColor: "rgba(0, 119, 204, 0.3)",
+        tension: 0.3,
+        pointRadius: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { title: { display: true, text: "CFS" } },
+        x: { ticks: { autoSkip: true, maxRotation: 0 } }
+      }
+    }
+  });
+}
+
+
+
 // -----------------------------------------------------
 // RUN EVERYTHING
 // -----------------------------------------------------
