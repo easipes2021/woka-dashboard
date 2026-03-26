@@ -8,7 +8,7 @@ for ts in data:
     code = ts["variable"]["variableCode"][0]["value"]
     vals = ts["values"][0]["value"]
     df = pd.DataFrame([{"dt": v["dateTime"], "value": float(v["value"])} for v in vals])
-    df["dt"] = pd.to_datetime(df["dt"])
+    df["dt"] = pd.to_datetime(df["dt"], utc=True)
     series[code] = df.set_index("dt")
 
 merged = series["00065"].join(series["00060"], lsuffix="_H", rsuffix="_Q").dropna()
