@@ -1,4 +1,4 @@
-- name: Fetch USGS Data
+name: Fetch USGS Data
 
 on:
   workflow_dispatch:
