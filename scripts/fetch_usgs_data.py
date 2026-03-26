@@ -3,26 +3,17 @@ import requests
 import json
 from datetime import datetime, timedelta
 
-# -----------------------------------
-# CONFIGURATION
-# -----------------------------------
-SITE_ID = "07195430"              # Your USGS station
-PARAMS = "00060,00065"            # 00060 = CFS, 00065 = Gage height
-DAYS_BACK = 730                   # 2 years
+SITE_ID = "07195430"
+PARAMS = "00060,00065"      # discharge + gage height
 OUTPUT_FILE = "data/usgs_07195430.json"
 
-# -----------------------------------
-# BUILD DATE RANGE
-# -----------------------------------
+# Build proper date range with timestamps
 end_dt = datetime.utcnow()
-start_dt = end_dt - timedelta(days=DAYS_BACK)
+start_dt = end_dt - timedelta(days=730)
 
-start = start_dt.strftime("%Y-%m-%d")
-end = end_dt.strftime("%Y-%m-%d")
+start = start_dt.strftime("%Y-%m-%dT%H:%MZ")
+end = end_dt.strftime("%Y-%m-%dT%H:%MZ")
 
-# -----------------------------------
-# WORKING NWIS IV ENDPOINT
-# -----------------------------------
 BASE_URL = "https://waterservices.usgs.gov/nwis/iv/"
 
 url = (
@@ -33,21 +24,15 @@ url = (
     f"&endDT={end}"
 )
 
-print("Fetching: " + url)
+print("Fetching:", url)
 
-# -----------------------------------
-# FETCH DATA
-# -----------------------------------
 resp = requests.get(url)
 resp.raise_for_status()
 
 data = resp.json()
 
-# -----------------------------------
-# SAVE OUTPUT
-# -----------------------------------
 os.makedirs("data", exist_ok=True)
 with open(OUTPUT_FILE, "w") as f:
     json.dump(data, f, indent=2)
 
-print(f"✅ Saved data to {OUTPUT_FILE}")
+print(f"✅ Saved {OUTPUT_FILE}")
