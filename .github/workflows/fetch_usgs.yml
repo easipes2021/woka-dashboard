@@ -1,4 +1,7 @@
-name: Fetch USGS Data
+- name: Fetch USGS Data
+  env:
+    USGS_API_KEY: ${{ secrets.USGS_API_KEY }}
+  run: python ${GITHUB_WORKSPACE}/scripts/fetch_usgs_data.py
 
 on:
   workflow_dispatch:
