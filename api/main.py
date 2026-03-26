@@ -48,6 +48,32 @@ def flow(stage: float):
         "segment_used": "low" if stage <= H_BREAK else "high"
     }
 
+
+@app.get("/historic")
+def historic():
+    """
+    Returns the cleaned (H, Q) paired dataset used to build the rating curve.
+    Ideal for plotting hydrographs or scatter plots.
+    """
+    import pandas as pd
+    import os
+
+    csv_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "paired_stage_flow.csv")
+
+    if not os.path.exists(csv_path):
+        raise HTTPException(status_code=404, detail="Historic dataset not found.")
+
+    df = pd.read_csv(csv_path)
+    return df.to_dict(orient="records")
+
+
+
+
+
+
+
+
+
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
