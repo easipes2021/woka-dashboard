@@ -140,29 +140,6 @@ async function loadLakeFrancisCurrent() {
       "Error loading data";
   }
 }
-// -----------------------------------------------------
-// SILOAM SPRINGS (USGS 07195800) – CURRENT FLOW (CFS)
-// -----------------------------------------------------
-async function loadSiloamCurrent() {
-  const url =
-    "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195800&parameterCd=00060";
-
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-
-    const value =
-      data.value.timeSeries[0].values[0].value[0].value;
-
-    document.getElementById("siloamCurrent").textContent =
-      value + " CFS";
-
-  } catch (err) {
-    console.error("Error loading Siloam current flow:", err);
-    document.getElementById("siloamCurrent").textContent =
-      "Error loading data";
-  }
-}
 
 // Illinois River rating curve (07195430)
 // Generated from 2 years of NWIS IV data
