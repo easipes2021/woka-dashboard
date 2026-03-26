@@ -31,6 +31,7 @@ async function loadLakeFrancisGraph() {
   const url =
     "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&period=P7D";
 
+
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -206,6 +207,7 @@ async function loadConvertedHistoric() {
   const data = await resp.json();
   return data;
 }
+
 async function drawConvertedGraph() {
   const points = await loadConvertedHistoric();
 
