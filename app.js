@@ -309,11 +309,14 @@ async function drawConvertedGraph() {
 
 
 // -----------------------------------------------------
-// ---- Run Everything ----
+// RUN EVERYTHING
+// -----------------------------------------------------
 getAirTemperature();
 loadLakeFrancisGraph();
 loadLakeFrancisCurrent();
 
-// Siloam Springs
+// Siloam Springs Current Flow
 updateSiloamCurrentFlow();
+
+// Converted Flow Graph
 drawConvertedGraph();
