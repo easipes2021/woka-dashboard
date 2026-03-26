@@ -1,0 +1,38 @@
+name: Daily Rating Curve Regeneration
+
+on:
+  schedule:
+    - cron: "0 2 * * *"   # 2 AM UTC daily
+  workflow_dispatch:
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install Python dependencies
+      run: python -m pip install --upgrade pip pandas numpy matplotlib scipy requests
+
+    - name: Fetch 2-year NWIS data
+      run: python ${GITHUB_WORKSPACE}/scripts/fetch_usgs_data.py
+
+    - name: Compute rating curve
+      run: python ${GITHUB_WORKSPACE}/scripts/build_rating_curve.py
+
+    - name: Commit updated rating outputs
+      run: |
+        git config user.name "github-actions"
+        git config user.email "actions@github.com"
+        git add data/usgs_07195430.json rating_curve_metadata.json paired_stage_flow.csv rating_curve.png
+        git commit -m "Daily rating curve update" || echo "No changes"
+        git push
