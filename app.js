@@ -106,44 +106,44 @@ async function getAirTemperature() {
 
 
 async function loadLakeFrancisData() {
+    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&period=PT2H";
     try {
-        const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&period=P7D";
         const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
-        const raw = data.value.timeSeries[0].values[0].value;
-        const latest = raw[raw.length - 1];
+        const values = data.value.timeSeries[0].values[0].value;
+        
+        if (values.length >= 2) {
+            const current = parseFloat(values[values.length - 1].value);
+            const previous = parseFloat(values[values.length - 2].value);
+            const trend = getTrendHTML(current, previous);
 
-        document.getElementById("lakeFrancisCurrent").textContent = latest.value + " ft";
-        checkDataFreshness(latest.dateTime, "lakeFrancisTime");
-
-        const labels = raw.map(v => new Date(v.dateTime).toLocaleString([], {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'}));
-        const heights = raw.map(v => parseFloat(v.value));
-
-        if (lakeChartInstance) lakeChartInstance.destroy();
-        lakeChartInstance = createMobileChart(document.getElementById("lakeFrancisChart").getContext('2d'), labels, heights, "Stage (ft)", "#0077cc", "lakeFrancisChart", "scrubValue");
-        document.getElementById("lakeFrancisGraphTime").textContent = `Updated: ${getFormattedTime()}`;
-    } catch (e) { console.error("Lake Error", e); }
+            document.getElementById("lakeFrancisCurrent").innerHTML = 
+                `${current.toFixed(2)} ft ${trend}`;
+            checkDataFreshness(values[values.length - 1].dateTime, "lakeFrancisTime");
+        }
+    } catch (e) { console.error("Lake Trend Error", e); }
 }
 
 async function loadSSKPData() {
+    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195430&parameterCd=00065&period=PT2H";
     try {
-        const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195430&parameterCd=00065&period=P7D";
         const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
-        const raw = data.value.timeSeries[0].values[0].value;
-        const latest = raw[raw.length - 1];
+        const values = data.value.timeSeries[0].values[0].value;
+        
+        if (values.length >= 2) {
+            const currentH = parseFloat(values[values.length - 1].value);
+            const previousH = parseFloat(values[values.length - 2].value);
+            
+            const currentCFS = ratingCurve_CFS(currentH);
+            const previousCFS = ratingCurve_CFS(previousH);
+            const trend = getTrendHTML(currentCFS, previousCFS);
 
-        const currentFlow = ratingCurve_CFS(latest.value);
-        document.getElementById("siloamCurrent").textContent = `${currentFlow.toFixed(1)} CFS`;
-        checkDataFreshness(latest.dateTime, "siloamTime");
-
-        const labels = raw.map(v => new Date(v.dateTime).toLocaleString([], {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'}));
-        const flows = raw.map(v => ratingCurve_CFS(v.value));
-
-        if (convertedChartInstance) convertedChartInstance.destroy();
-        convertedChartInstance = createMobileChart(document.getElementById("convertedChart").getContext('2d'), labels, flows, "Flow (CFS)", "#ffa500", "convertedChart", "convertedScrub");
-        document.getElementById("convertedGraphTime").textContent = `Updated: ${getFormattedTime()}`;
-    } catch (e) { console.error("SSKP Error", e); }
+            document.getElementById("siloamCurrent").innerHTML = 
+                `${currentCFS.toFixed(1)} CFS ${trend}`;
+            checkDataFreshness(values[values.length - 1].dateTime, "siloamTime");
+        }
+    } catch (e) { console.error("SSKP Trend Error", e); }
 }
 
 
@@ -151,27 +151,22 @@ async function loadSSKPData() {
 // 9. HWY 16 GAUGE (DIRECT CFS) - USGS-07195400
 // -----------------------------------------------------
 async function loadHwy16Data() {
-    // 07195400 is Hwy 16 | 00060 is Direct Discharge (CFS)
-    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195400&parameterCd=00060";
+    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195400&parameterCd=00060&period=PT2H";
     try {
         const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
+        const values = data.value.timeSeries[0].values[0].value;
         
-        // USGS JSON structures are deep; this safely navigates to the value
-        if (data.value && data.value.timeSeries[0] && data.value.timeSeries[0].values[0].value.length > 0) {
-            const latest = data.value.timeSeries[0].values[0].value[0];
-            const flowValue = parseFloat(latest.value);
+        if (values.length >= 2) {
+            const current = parseFloat(values[values.length - 1].value);
+            const previous = parseFloat(values[values.length - 2].value);
+            const trend = getTrendHTML(current, previous);
 
-            // Using toLocaleString() adds commas (e.g., 1,200 CFS) for better readability
-            document.getElementById("hwy16Current").textContent = `${Math.round(flowValue).toLocaleString()} CFS`;
-            checkDataFreshness(latest.dateTime, "hwy16Time");
-        } else {
-            document.getElementById("hwy16Current").textContent = "Data Gap";
+            document.getElementById("hwy16Current").innerHTML = 
+                `${Math.round(current).toLocaleString()} CFS ${trend}`;
+            checkDataFreshness(values[values.length - 1].dateTime, "hwy16Time");
         }
-    } catch (e) {
-        console.error("Hwy 16 Direct Pull Error:", e);
-        document.getElementById("hwy16Current").textContent = "Offline";
-    }
+    } catch (e) { console.error("Hwy 16 Trend Error", e); }
 }
 
 
