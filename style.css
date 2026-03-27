@@ -1,42 +1,125 @@
+/* 1. Define Color Variables */
+:root {
+  --primary-blue: #0077cc;
+  --bg-color: #eef2f3;
+  --card-bg: #ffffff;
+  --text-main: #333333;
+  --text-muted: #444444;
+  --shadow: rgba(0, 0, 0, 0.13);
+}
+
+/* 2. Dark Mode Overrides */
+body.dark-mode {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --text-main: #f0f0f0;
+  --text-muted: #bbbbbb;
+  --shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* 3. Global Styles */
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background: #eef2f3;
+  background: var(--bg-color);
+  color: var(--text-main);
+  transition: background 0.3s ease, color 0.3s ease;
+  margin: 0;
 }
 
 h1 {
   text-align: center;
 }
 
+/* 4. The Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--primary-blue);
+  background: var(--card-bg);
+  color: var(--text-main);
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 1000;
+  box-shadow: 0 2px 5px var(--shadow);
+}
+
+/* 5. Cards */
 .card {
-  background: white;
+  background: var(--card-bg);
   padding: 20px;
   margin: 20px auto;
-  max-width: 400px;
+  max-width: 600px; /* Widened slightly for graphs */
   border-radius: 8px;
-  box-shadow: 0 0 10px #00000022;
+  box-shadow: 0 4px 10px var(--shadow);
   overflow: hidden;
+  text-align: center;
+  transition: background 0.3s ease;
 }
 
 .card h2 {
   margin-top: 0;
+  color: var(--primary-blue);
+  font-size: 1.2rem;
 }
 
-p {
-  font-size: 1.5rem;
+/* Big numbers (Stage, Temp, Flow) */
+.big-number, p {
+  font-size: 2.5rem;
   font-weight: bold;
+  margin: 10px 0;
 }
 
+/* 6. Charts */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-top: 10px;
+}
+
+#lakeFrancisChart, #convertedChart {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+@media (max-width: 600px) {
+  .chart-container {
+    height: 240px;
+  }
+  .big-number {
+    font-size: 2rem;
+  }
+}
+
+/* 7. Readouts & Timestamps */
+.timestamp {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 5px;
+}
+
+#convertedScrub, #scrubValue {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+  min-height: 1.2em;
+}
+
+/* 8. UI Elements (Buttons/Spinners) */
 .button-link {
   display: inline-block;
   padding: 12px 20px;
-  background-color: #0077cc;
+  background-color: var(--primary-blue);
   color: white;
   text-decoration: none;
   border-radius: 6px;
   font-size: 1.2rem;
   font-weight: bold;
-  text-align: center;
   transition: background-color 0.2s ease;
 }
 
@@ -44,65 +127,17 @@ p {
   background-color: #005fa3;
 }
 
-.chart-container {
-  position: relative;
-  height: 400px;
-  max-height: 400px;
-  width: 100%;
-  overflow: hidden;
-}
-
-/* ✅ FIXED: missing semicolon + missing brace */
-#lakeFrancisChart {
-  height: 100% !important;
-  width: 100%;
-}
-
-.chart-container {
-  position: relative;
-  width: 100%;
-  height: 300px;
-}
-
-@media (max-width: 600px) {
-  .chart-container {
-    height: 240px;
-  }
-}
-
-#convertedScrub {
-  margin-top: 8px;
-  font-size: 14px;
-  color: #444;
-}
-
-/* Container for the readout to keep things aligned */
-#siloamCurrent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 50px;
-}
-
-/* The Spinner */
 .spinner {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border: 3px solid rgba(0, 119, 204, 0.2);
-  border-top: 3px solid #0077cc;
+  border-top: 3px solid var(--primary-blue);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 5px;
+  margin: 10px auto;
 }
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-/* Small text styling */
-small {
-  font-size: 0.7rem;
-  font-weight: bold;
-  text-transform: uppercase;
 }
