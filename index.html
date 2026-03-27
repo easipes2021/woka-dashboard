@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>WOKA Streamflow Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // This dynamically loads app.js with a unique version number every time the page opens
+        const script = document.createElement('script');
+        script.src = 'app.js?v=' + Date.now();
+        document.body.appendChild(script);
+    </script>
     <style>
         :root {
             --primary-blue: #0077cc;
@@ -97,6 +105,9 @@
         }
     </style>
 </head>
+
+
+    
 <body>
 
     <button id="themeToggle" class="theme-toggle">🌙 Dark Mode</button>
