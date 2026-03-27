@@ -132,44 +132,62 @@ async function loadWaterTempData() {
 
 
 async function loadLakeFrancisData() {
-    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&period=PT2H";
+    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&period=P7D";
     try {
         const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
-        const values = data.value.timeSeries[0].values[0].value;
+        const rawValues = data.value.timeSeries[0].values[0].value;
         
-        if (values.length >= 2) {
-            const current = parseFloat(values[values.length - 1].value);
-            const previous = parseFloat(values[values.length - 2].value);
-            const trend = getTrendHTML(current, previous);
+        if (rawValues.length >= 2) {
+            const latest = rawValues[rawValues.length - 1];
+            const prev = rawValues[rawValues.length - 2];
+            const trend = getTrendHTML(parseFloat(latest.value), parseFloat(prev.value));
 
-            document.getElementById("lakeFrancisCurrent").innerHTML = 
-                `${current.toFixed(2)} ft ${trend}`;
-            checkDataFreshness(values[values.length - 1].dateTime, "lakeFrancisTime");
+            document.getElementById("lakeFrancisCurrent").innerHTML = `${parseFloat(latest.value).toFixed(2)} ft ${trend}`;
+            checkDataFreshness(latest.dateTime, "lakeFrancisTime");
+
+            // Map data for the Stage Chart
+            const chartData = rawValues.map(v => ({
+                t: new Date(v.dateTime),
+                y: parseFloat(v.value)
+            }));
+            
+            updateLakeChart(chartData);
         }
-    } catch (e) { console.error("Lake Trend Error", e); }
+    } catch (e) { console.error("Lake Graph Error:", e); }
 }
 
 async function loadSSKPData() {
-    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195430&parameterCd=00065&period=PT2H";
+    // 1. Get 7 days of data so the graph isn't empty
+    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195430&parameterCd=00065&period=P7D";
     try {
         const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
-        const values = data.value.timeSeries[0].values[0].value;
+        const rawValues = data.value.timeSeries[0].values[0].value;
         
-        if (values.length >= 2) {
-            const currentH = parseFloat(values[values.length - 1].value);
-            const previousH = parseFloat(values[values.length - 2].value);
+        if (rawValues.length >= 2) {
+            // 2. Trend Logic (Last vs Second-to-Last)
+            const latestRaw = rawValues[rawValues.length - 1];
+            const prevRaw = rawValues[rawValues.length - 2];
             
-            const currentCFS = ratingCurve_CFS(currentH);
-            const previousCFS = ratingCurve_CFS(previousH);
-            const trend = getTrendHTML(currentCFS, previousCFS);
+            const currentCFS = ratingCurve_CFS(latestRaw.value);
+            const prevCFS = ratingCurve_CFS(prevRaw.value);
+            const trend = getTrendHTML(currentCFS, prevCFS);
 
-            document.getElementById("siloamCurrent").innerHTML = 
-                `${currentCFS.toFixed(1)} CFS ${trend}`;
-            checkDataFreshness(values[values.length - 1].dateTime, "siloamTime");
+            document.getElementById("siloamCurrent").innerHTML = `${currentCFS.toFixed(1)} CFS ${trend}`;
+            checkDataFreshness(latestRaw.dateTime, "siloamTime");
+
+            // 3. GRAPHING LOGIC (The missing piece)
+            // Map the 7-day data through your rating curve for the chart
+            const chartData = rawValues.map(v => ({
+                t: new Date(v.dateTime),
+                y: ratingCurve_CFS(v.value)
+            }));
+            
+            // Call your existing chart function (make sure the name matches yours)
+            updateSiloamChart(chartData); 
         }
-    } catch (e) { console.error("SSKP Trend Error", e); }
+    } catch (e) { console.error("SSKP Graph Error:", e); }
 }
 
 
