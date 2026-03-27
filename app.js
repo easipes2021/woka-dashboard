@@ -15,7 +15,6 @@ function getFormattedTime() {
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-// Check for saved user preference on load
 if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
     if (themeToggle) themeToggle.textContent = '☀️ Light Mode';
@@ -24,7 +23,6 @@ if (localStorage.getItem('theme') === 'dark') {
 if (themeToggle) {
     themeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
-        
         if (body.classList.contains('dark-mode')) {
             localStorage.setItem('theme', 'dark');
             themeToggle.textContent = '☀️ Light Mode';
@@ -32,8 +30,6 @@ if (themeToggle) {
             localStorage.setItem('theme', 'light');
             themeToggle.textContent = '🌙 Dark Mode';
         }
-        
-        // Re-run graphs so they can detect the new theme if you've added color logic
         initApp(); 
     });
 }
@@ -44,21 +40,16 @@ if (themeToggle) {
 async function getAirTemperature() {
     const tempDisplay = document.getElementById("airTemp");
     const timeDisplay = document.getElementById("airTempTime");
-
     try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=36.13&longitude=-94.57&current=temperature_2m&temperature_unit=fahrenheit`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=36.13&longitude=-94.57&current=temperature_2m&temperature_unit=fahrenheit&_cb=${Date.now()}`;
         const res = await fetch(url);
         const data = await res.json();
-        
         if (data.current) {
             tempDisplay.textContent = `${data.current.temperature_2m} °F`;
-            if (timeDisplay) {
-                timeDisplay.textContent = `Updated: ${getFormattedTime()}`;
-            }
+            if (timeDisplay) timeDisplay.textContent = `Updated: ${getFormattedTime()}`;
         }
     } catch (err) {
         console.error("Temp fetch error:", err);
-        if (tempDisplay) tempDisplay.textContent = "Error";
     }
 }
 
@@ -66,16 +57,16 @@ async function getAirTemperature() {
 // 2. LAKE FRANCIS CURRENT LEVEL
 // -----------------------------------------------------
 async function loadLakeFrancisCurrent() {
-    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065";
+    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&_cb=${Date.now()}`;
     try {
         const res = await fetch(url);
         const data = await res.json();
-        const value = data.value.timeSeries[0].values[0].value[0].value;
-
-        document.getElementById("lakeFrancisCurrent").textContent = value + " ft";
-        document.getElementById("lakeFrancisTime").textContent = `Updated: ${getFormattedTime()}`;
+        const latest = data.value.timeSeries[0].values[0].value[0];
+        
+        document.getElementById("lakeFrancisCurrent").textContent = latest.value + " ft";
+        checkDataFreshness(latest.dateTime, "lakeFrancisTime");
     } catch (err) {
-        console.error("Error loading Lake Francis current level:", err);
+        console.error("Error loading Lake Francis:", err);
     }
 }
 
@@ -83,22 +74,20 @@ async function loadLakeFrancisCurrent() {
 // 3. LAKE FRANCIS GRAPH (7-DAY)
 // -----------------------------------------------------
 async function loadLakeFrancisGraph() {
-    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&period=P7D";
+    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195495&parameterCd=00065&period=P7D&_cb=${Date.now()}`;
     try {
         const res = await fetch(url);
         const data = await res.json();
-
         const values = data.value.timeSeries[0].values[0].value.map((v) => ({
             time: v.dateTime,
             height: parseFloat(v.value),
         }));
 
-        const labels = values.map((v) => new Date(v.time).toLocaleDateString());
+        const labels = values.map((v) => new Date(v.time).toLocaleDateString([], {month:'numeric', day:'numeric'}));
         const heights = values.map((v) => v.height);
         const ctx = document.getElementById("lakeFrancisChart");
 
         if (lakeChartInstance) lakeChartInstance.destroy();
-
         lakeChartInstance = new Chart(ctx, {
             type: "line",
             data: {
@@ -128,10 +117,10 @@ async function loadLakeFrancisGraph() {
             const points = lakeChartInstance.getElementsAtEventForMode(event, "index", { intersect: false }, true);
             if (points.length) {
                 const i = points[0].index;
-                scrub.textContent = `${labels[i]} — ${heights[i]} ft`;
+                const d = new Date(values[i].time).toLocaleString([], {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit'});
+                scrub.textContent = `${d} — ${heights[i]} ft`;
             }
         };
-
         document.getElementById("lakeFrancisGraphTime").textContent = `Updated: ${getFormattedTime()}`;
     } catch (err) {
         console.error("Error loading Lake Francis Graph:", err);
@@ -147,48 +136,24 @@ function ratingCurve_CFS(gageHeightFt) {
     return H <= 5.416 ? 20.93 * Math.pow(H, 2.040) : 2.68 * Math.pow(H, 3.019);
 }
 
-async function getSiloamStage() {
-    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195430&parameterCd=00065";
-    const resp = await fetch(url);
-    const data = await resp.json();
-    return parseFloat(data.value.timeSeries[0].values[0].value[0].value);
-}
-
-async function getLiveCFS(stageFt) {
-    const url = `https://woka-rating-api.onrender.com/flow?stage=${stageFt}`;
-    const resp = await fetch(url);
-    if (!resp.ok) throw new Error("API not responding");
-    const data = await resp.json();
-    return data.discharge_cfs;
-}
-
 async function updateSiloamCurrentFlow() {
     const displayEl = document.getElementById("siloamCurrent");
     const timeEl = document.getElementById("siloamTime");
-    
-    const cachedFlow = localStorage.getItem("siloamLastFlow");
-    const cachedTime = localStorage.getItem("siloamLastTimeFormatted");
-    
-    if (cachedFlow) {
-        displayEl.innerHTML = `${cachedFlow} CFS <br><span class="refreshing-text">(Refreshing...)</span>`;
-        timeEl.textContent = `Last seen: ${cachedTime}`;
-    }
+    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195430&parameterCd=00065&_cb=${Date.now()}`;
 
     try {
-        const stage = await getSiloamStage();
-        let cfs;
-        try {
-            cfs = await getLiveCFS(stage);
-        } catch (apiErr) {
-            cfs = ratingCurve_CFS(stage);
-        }
+        const resp = await fetch(url);
+        const data = await resp.json();
+        const latest = data.value.timeSeries[0].values[0].value[0];
+        const stage = parseFloat(latest.value);
+
+        let cfs = ratingCurve_CFS(stage);
 
         if (cfs !== null) {
-            const timeNow = getFormattedTime();
             displayEl.textContent = `${cfs.toFixed(1)} CFS`;
-            timeEl.textContent = `Updated: ${timeNow}`;
+            checkDataFreshness(latest.dateTime, "siloamTime");
             localStorage.setItem("siloamLastFlow", cfs.toFixed(1));
-            localStorage.setItem("siloamLastTimeFormatted", timeNow);
+            localStorage.setItem("siloamLastTimeFormatted", getFormattedTime());
         }
     } catch (err) {
         console.error("SSKP Flow Update failed:", err);
@@ -199,31 +164,23 @@ async function updateSiloamCurrentFlow() {
 // 5. SSKP HISTORIC CONVERTED GRAPH
 // -----------------------------------------------------
 async function drawConvertedGraph() {
-    // USGS ID for Illinois River South of Siloam Springs
-    const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195430&parameterCd=00065&period=P7D";
-    
+    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195430&parameterCd=00065&period=P7D&_cb=${Date.now()}`;
     try {
         const res = await fetch(url);
         const data = await res.json();
-
-        // 1. Get the raw stage data (ft)
         const rawValues = data.value.timeSeries[0].values[0].value;
 
-        // 2. Map and Convert feet to CFS using your math formula
         const labels = [];
         const cfsValues = [];
 
         rawValues.forEach(v => {
-            const stageFt = parseFloat(v.value);
-            const flowCfs = ratingCurve_CFS(stageFt); // Using your local formula
-            
+            const flowCfs = ratingCurve_CFS(parseFloat(v.value));
             labels.push(new Date(v.dateTime).toLocaleString([], {month:'numeric', day:'numeric', hour:'2-digit'}));
             cfsValues.push(flowCfs);
         });
 
         const ctx = document.getElementById("convertedChart");
         if (convertedChartInstance) convertedChartInstance.destroy();
-
         convertedChartInstance = new Chart(ctx, {
             type: "line",
             data: {
@@ -231,7 +188,7 @@ async function drawConvertedGraph() {
                 datasets: [{
                     label: "Calculated Flow (CFS)",
                     data: cfsValues,
-                    borderColor: "#ffa500", // Orange for SSKP
+                    borderColor: "#ffa500",
                     backgroundColor: "rgba(255, 165, 0, 0.2)",
                     borderWidth: 2,
                     pointRadius: 0,
@@ -247,12 +204,30 @@ async function drawConvertedGraph() {
                 }
             }
         });
-
         document.getElementById("convertedGraphTime").textContent = `Live Calculated: ${getFormattedTime()}`;
-
     } catch (err) {
         console.error("Manual flow conversion failed:", err);
-        document.getElementById("convertedGraphTime").textContent = "USGS Data Unavailable";
+    }
+}
+
+// -----------------------------------------------------
+// FRESHNESS HELPER
+// -----------------------------------------------------
+function checkDataFreshness(dateTimeStr, elementId) {
+    const dataTime = new Date(dateTimeStr);
+    const now = new Date();
+    const diffInMinutes = (now - dataTime) / (1000 * 60);
+    const el = document.getElementById(elementId);
+    if (!el) return;
+
+    if (diffInMinutes > 120) {
+        el.style.color = "red";
+        el.style.fontWeight = "bold";
+        el.textContent = `DELAYED: ${dataTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+    } else {
+        el.style.color = "";
+        el.style.fontWeight = "normal";
+        el.textContent = `Updated: ${getFormattedTime()}`;
     }
 }
 
