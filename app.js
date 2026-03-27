@@ -55,12 +55,27 @@ function updateLakeChart(chartData) {
     lakeChartInstance = new Chart(ctx, {
         type: 'line',
         data: { datasets: [{ label: 'Stage (ft)', data: chartData, borderColor: '#007bff', backgroundColor: 'rgba(0, 123, 255, 0.1)', fill: true, tension: 0.3, pointRadius: 0 }] },
-        options: { 
-            responsive: true, 
-            maintainAspectRatio: false, 
-            interaction: { mode: 'index', intersect: false },
-            scales: { x: { type: 'time', time: { unit: 'day' } } }, 
-            plugins: { legend: { display: false } } 
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            
+            // Helps the chart detect the finger position faster
+            interaction: {
+                mode: 'index',
+                intersect: false,
+            },
+            
+            // Specifically define which events the chart listens to
+            events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove', 'touchend'],
+            
+            plugins: {
+                tooltip: {
+                    enabled: true,
+                    // Position the tooltip at the top so the finger doesn't block it
+                    position: 'nearest', 
+                }
+            },
+            // ... rest of your scales ...
         }
     });
 }
