@@ -113,19 +113,20 @@
     
     <div class="dashboard-grid">
         <div class="card">
-            <h2>Air Temperature</h2>
+            <h2>Watts Air Temperature</h2>
             <div id="airTemp" class="big-number">-- °F</div>
             <div id="airTempTime" class="timestamp">Updated: --:--</div>
         </div>
         
         <div class="card">
             <h2>Lake Francis Stage</h2>
+            <h3>Low:909.6/High:912.0</h3>
             <div id="lakeFrancisCurrent" class="big-number">-- ft</div>
             <div id="lakeFrancisTime" class="timestamp">Updated: --:--</div>
         </div>
 
         <div class="card" style="grid-column: 1 / -1;">
-            <h2>Lake Francis (7-Day)</h2>
+            <h2>Lake Francis (7-Day Ft)</h2>
             <div id="scrubValue" class="scrub-readout">Hover to explore</div>
             <div class="chart-container">
                 <canvas id="lakeFrancisChart"></canvas>
@@ -134,13 +135,13 @@
         </div>
 
         <div class="card">
-            <h2>SSKP Flow Prediction</h2>
+            <h2>SSKP CFS Flow Conversion</h2>
             <div id="siloamCurrent" class="big-number">-- CFS</div>
             <div id="siloamTime" class="timestamp">Updated: --:--</div>
         </div>
         
         <div class="card" style="grid-column: 1 / -1;">
-            <h2>SSKP Historic Flow</h2>
+            <h2>SSKP 7-Day CFS Conversion</h2>
             <div id="convertedScrub" class="scrub-readout">Hover to explore</div>
             <div class="chart-container">
                 <canvas id="convertedChart"></canvas>
