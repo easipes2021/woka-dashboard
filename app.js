@@ -1,7 +1,7 @@
 /**
  * ILLINOIS RIVER DASHBOARD - MASTER SCRIPT
  * Features: Independent Gauge Loading, Auto-Fahrenheit Conversion, 
- * 7-Day Graphing, Trend Indicators, and Mobile Scrubbing.
+ * 7-Day Graphing, Trend Indicators, Mobile Scrubbing, and Theme Toggle.
  */
 
 console.log("App.js: Master Script Initializing...");
@@ -47,7 +47,7 @@ function checkDataFreshness(dateTimeStr, elementId) {
 
 // --- 5. CHARTING FUNCTIONS ---
 
-// Optimized for Mobile Scrubbing (intersect: false)
+// Optimized for Mobile Scrubbing
 function updateLakeChart(chartData) {
     const ctx = document.getElementById('lakeFrancisChart');
     if (!ctx) return;
@@ -58,24 +58,16 @@ function updateLakeChart(chartData) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            
-            // Helps the chart detect the finger position faster
-            interaction: {
-                mode: 'index',
-                intersect: false,
-            },
-            
-            // Specifically define which events the chart listens to
+            interaction: { mode: 'index', intersect: false },
             events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove', 'touchend'],
-            
-            plugins: {
-                tooltip: {
-                    enabled: true,
-                    // Position the tooltip at the top so the finger doesn't block it
-                    position: 'nearest', 
-                }
+            scales: { 
+                x: { type: 'time', time: { unit: 'day' } },
+                y: { beginAtZero: false }
             },
-            // ... rest of your scales ...
+            plugins: { 
+                legend: { display: false },
+                tooltip: { position: 'nearest' }
+            }
         }
     });
 }
@@ -109,10 +101,12 @@ function updateConvertedFullChart(chartData) {
             responsive: true,
             maintainAspectRatio: false,
             interaction: { mode: 'index', intersect: false },
+            events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove', 'touchend'],
             scales: { x: { type: 'time', time: { unit: 'day' } }, y: { beginAtZero: false } },
             plugins: {
                 legend: { display: false },
                 tooltip: {
+                    position: 'nearest',
                     callbacks: {
                         label: function(context) {
                             const val = context.parsed.y.toFixed(1);
@@ -133,11 +127,7 @@ async function getAirTemperature() {
     try {
         const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=36.13&longitude=-94.57&current=temperature_2m&temperature_unit=fahrenheit");
         const data = await res.json();
-        
-        // Update the temperature value
         document.getElementById("airTemp").textContent = `${data.current.temperature_2m} °F`;
-        
-        // FIX: Added the timestamp update for Air Temp
         const timeEl = document.getElementById("airTempTime");
         if (timeEl) {
             timeEl.textContent = `Updated: ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
@@ -183,14 +173,10 @@ async function loadSSKPData() {
             const currentCFS = ratingCurve_CFS(latestRaw.value);
             const trend = getTrendHTML(currentCFS, ratingCurve_CFS(rawValues[rawValues.length - 2].value));
 
-            // Update Prediction Card
             document.getElementById("siloamCurrent").innerHTML = `${currentCFS.toFixed(1)} CFS ${trend}`;
             checkDataFreshness(latestRaw.dateTime, "siloamTime");
 
-            // Map data for dual graphs
             const chartData = rawValues.map(v => ({ x: new Date(v.dateTime), y: ratingCurve_CFS(v.value) }));
-
-            // Update Mini Card and Wide 7-Day Card
             updateSiloamChart(chartData);
             updateConvertedFullChart(chartData);
         }
@@ -202,10 +188,11 @@ async function loadHwy16Data() {
         const res = await fetch("https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07195400&parameterCd=00060&period=PT2H");
         const data = await res.json();
         const vals = data.value.timeSeries[0].values[0].value;
-        const current = parseFloat(vals[vals.length-1].value);
+        const latest = vals[vals.length-1];
+        const current = parseFloat(latest.value);
         const trend = getTrendHTML(current, parseFloat(vals[vals.length-2].value));
         document.getElementById("hwy16Current").innerHTML = `${Math.round(current).toLocaleString()} CFS ${trend}`;
-        checkDataFreshness(vals[vals.length-1].dateTime, "hwy16Time");
+        checkDataFreshness(latest.dateTime, "hwy16Time");
     } catch (e) { console.error("Hwy 16 Fail", e); }
 }
 
@@ -214,16 +201,17 @@ async function loadSavoyData() {
         const res = await fetch("https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07194800&parameterCd=00060&period=PT2H");
         const data = await res.json();
         const vals = data.value.timeSeries[0].values[0].value;
-        const current = parseFloat(vals[vals.length-1].value);
+        const latest = vals[vals.length-1];
+        const current = parseFloat(latest.value);
         const trend = getTrendHTML(current, parseFloat(vals[vals.length-2].value));
         document.getElementById("savoyCurrent").innerHTML = `${Math.round(current).toLocaleString()} CFS ${trend}`;
-        checkDataFreshness(vals[vals.length-1].dateTime, "savoyTime");
+        checkDataFreshness(latest.dateTime, "savoyTime");
     } catch (e) { console.error("Savoy Fail", e); }
 }
 
 // --- 7. THE MASTER INITIALIZER ---
 async function initApp() {
-    console.log("Fetching all river data...");
+    console.log("Refreshing all dashboard data...");
     await Promise.allSettled([
         getAirTemperature(),
         loadWaterTempData(),
@@ -240,22 +228,13 @@ setInterval(initApp, 15 * 60 * 1000);
 
 // --- 8. THEME TOGGLE LOGIC ---
 const themeBtn = document.getElementById('themeToggle');
-
 if (themeBtn) {
-    // 1. Check for saved user preference on load
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-mode');
     }
-
-    // 2. Add the click listener
     themeBtn.addEventListener('click', () => {
-        console.log("Theme toggle clicked!"); // Debug line
         document.body.classList.toggle('dark-mode');
-        
-        // 3. Save the preference
         const isDark = document.body.classList.contains('dark-mode');
         localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
-} else {
-    console.error("Theme button with ID 'themeToggle' not found in HTML.");
 }
