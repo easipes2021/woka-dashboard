@@ -157,18 +157,30 @@ async function loadHwy16Data() {
 
 // 7. Initialization
 async function initApp() {
-    // Set initial loading text
-    document.getElementById("scrubValue").textContent = "Loading data...";
-    document.getElementById("convertedScrub").textContent = "Loading data...";
+    console.log("Starting data fetch...");
 
-    await Promise.allSettled([
-        getAirTemperature(),
-        loadLakeFrancisData(),
-        loadSSKPData()
-    ]);
+    // 1. Safety check: Only update text if the element actually exists
+    const s1 = document.getElementById("scrubValue");
+    const s2 = document.getElementById("convertedScrub");
+    if (s1) s1.textContent = "Loading data...";
+    if (s2) s2.textContent = "Loading data...";
 
-    document.getElementById("scrubValue").textContent = "Hover/Touch to explore";
-    document.getElementById("convertedScrub").textContent = "Hover/Touch to explore";
+    // 2. Run all functions
+    // We use await for each to ensure they don't block each other
+    try {
+        await getAirTemperature();
+        await loadLakeFrancisData();
+        await loadSSKPData();
+        await loadHwy16Data(); // Ensure this function name matches exactly!
+    } catch (err) {
+        console.error("Initialization error:", err);
+    }
+
+    // 3. Reset scrub text
+    if (s1) s1.textContent = "Hover/Touch to explore";
+    if (s2) s2.textContent = "Hover/Touch to explore";
+    
+    console.log("Fetch complete.");
 }
 
 // Theme Toggle Logic
