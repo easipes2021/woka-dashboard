@@ -173,3 +173,13 @@ body.dark-mode .gauge-link {
     border-color: #66b3ff;
     color: #66b3ff;
 }
+
+.trend-arrow {
+    font-size: 1.2rem;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.trend-rising { color: #ff4444; }  /* Red = Caution */
+.trend-falling { color: #00c851; } /* Green = Dropping */
+.trend-steady { color: var(--primary-blue); }
