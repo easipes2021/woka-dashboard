@@ -31,9 +31,6 @@ themeToggle.addEventListener('click', () => {
         localStorage.setItem('theme', 'light');
         themeToggle.textContent = '🌙 Dark Mode';
     }
-    
-    // Optional: Redraw charts to update colors for dark mode if needed
-    refreshAll(); 
 });
 
 
