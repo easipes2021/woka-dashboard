@@ -157,36 +157,37 @@ async function loadHwy16Data() {
     }
 }
 
+
+
 // -----------------------------------------------------
-// 10. SAVOY, AR GAUGE (DIRECT CFS) - USGS-07194800
+// 10. Illinois River near Savay Gauge
 // -----------------------------------------------------
 async function loadSavoyData() {
+    // 07194800 = Savoy | 00060 = CFS
     const url = "https://waterservices.usgs.gov/nwis/iv/?format=json&sites=07194800&parameterCd=00060";
+    
     try {
         const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
         
-        // This is the "Safety Gate": It checks if the USGS actually sent a value
-        if (data.value && 
-            data.value.timeSeries[0] && 
-            data.value.timeSeries[0].values[0].value.length > 0) {
-            
-            const latest = data.value.timeSeries[0].values[0].value[0];
-            const flowValue = parseFloat(latest.value);
+        // LOGGING: This helps us see if the USGS is actually sending a value
+        console.log("Savoy Raw Data:", data);
 
-            safeUpdateText("savoyCurrent", `${Math.round(flowValue).toLocaleString()} CFS`);
-            checkDataFreshness(latest.dateTime, "savoyTime");
+        // Direct path to the latest value
+        const val = data.value.timeSeries[0].values[0].value[0];
+        
+        if (val && val.value) {
+            const flow = Math.round(parseFloat(val.value));
+            document.getElementById("savoyCurrent").textContent = `${flow.toLocaleString()} CFS`;
+            checkDataFreshness(val.dateTime, "savoyTime");
         } else {
-            // If the USGS sends a blank response, we handle it gracefully
-            safeUpdateText("savoyCurrent", "No Recent Data");
-            safeUpdateText("savoyTime", "Station Reporting Gap");
+            document.getElementById("savoyCurrent").textContent = "Data Gap";
         }
-    } catch (e) { 
-        console.error("Savoy Fetch Error:", e);
-        safeUpdateText("savoyCurrent", "Offline");
+    } catch (e) {
+        console.error("Savoy API Error:", e);
+        document.getElementById("savoyCurrent").textContent = "API Error";
     }
 }
-
 
 // 7. Initialization
 async function initApp() {
