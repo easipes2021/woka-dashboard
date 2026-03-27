@@ -3,155 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>WOKA Streamflow Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // This is the ONLY place app.js should be called
-        const s = document.createElement('script');
-        s.src = 'app.js?v=' + Date.now();
-        document.body.appendChild(s);
-    </script>
-    
-    <style>
-        :root {
-            --primary-blue: #0077cc;
-            --bg-color: #eef2f3;
-            --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-muted: #666;
-            --shadow: rgba(0, 0, 0, 0.1);
-        }
-
-        body.dark-mode {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-main: #e0e0e0;
-            --text-muted: #b0b0b0;
-            --shadow: rgba(0, 0, 0, 0.5);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            transition: background-color 0.3s, color 0.3s;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 8px 15px;
-            border-radius: 20px;
-            border: 2px solid var(--primary-blue);
-            background: var(--card-bg);
-            color: var(--text-main);
-            cursor: pointer;
-            font-weight: bold;
-            z-index: 1000;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px var(--shadow);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .chart-container {
-            width: 100%;
-            height: 250px;
-            margin-top: 15px;
-            position: relative;
-        }
-
-        h2 { margin: 0 0 10px 0; font-size: 1.2rem; color: var(--primary-blue); }
-        
-        .big-number { 
-            font-size: 2.5rem; 
-            font-weight: bold; 
-            margin: 10px 0; 
-            min-height: 50px;
-        }
-        
-        .timestamp {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-top: 5px;
-        }
-
-        .scrub-readout {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-            min-height: 1.2em;
-            margin-top: 5px;
-        }
-    </style>
+    <title>Woka Dashboard</title>
+    <script src="app.js" defer></script>  
 </head>
-
-
-    
 <body>
+    <div id="app">Loading...</div>
 
-    <button id="themeToggle" class="theme-toggle">🌙 Dark Mode</button>
-    <h1 style="text-align:center;">WOKA Dashboard</h1>
-    
-    <div class="dashboard-grid">
-        <div class="card">
-            <h2>Air Temperature</h2>
-            <div id="airTemp" class="big-number">-- °F</div>
-            <div id="airTempTime" class="timestamp">Updated: --:--</div>
-        </div>
-        
-        <div class="card">
-            <h2>Lake Francis Stage</h2>
-            <div id="lakeFrancisCurrent" class="big-number">-- ft</div>
-            <div id="lakeFrancisTime" class="timestamp">Updated: --:--</div>
-        </div>
-
-        <div class="card" style="grid-column: 1 / -1;">
-            <h2>Lake Francis (7-Day)</h2>
-            <div id="scrubValue" class="scrub-readout">Hover to explore</div>
-            <div class="chart-container">
-                <canvas id="lakeFrancisChart"></canvas>
-            </div>
-            <div id="lakeFrancisGraphTime" class="timestamp">Updated: --:--</div>
-        </div>
-
-        <div class="card">
-            <h2>SSKP Flow Prediction</h2>
-            <div id="siloamCurrent" class="big-number">-- CFS</div>
-            <div id="siloamTime" class="timestamp">Updated: --:--</div>
-        </div>
-        
-        <div class="card" style="grid-column: 1 / -1;">
-            <h2>SSKP Historic Flow</h2>
-            <div id="convertedScrub" class="scrub-readout">Hover to explore</div>
-            <div class="chart-container">
-                <canvas id="convertedChart"></canvas>
-            </div>
-            <div id="convertedGraphTime" class="timestamp">Updated: --:--</div>
-        </div>
-    </div>
-
+    <script>
+        // Previously appending script tag to body
+        // const script = document.createElement('script');
+        // script.src = 'app.js';
+        // document.body.appendChild(script);
+    </script>
 </body>
 </html>
