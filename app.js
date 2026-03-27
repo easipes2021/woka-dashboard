@@ -1,5 +1,20 @@
 console.log("App.js: Initializing Master Script...");
 
+//Assists in rising/falling arrows
+function getTrendHTML(current, previous) {
+    const diff = current - previous;
+    // Threshold of 0.5% to avoid "flickering" arrows on tiny sensor noise
+    const threshold = current * 0.005; 
+
+    if (diff > threshold) {
+        return '<span class="trend-arrow trend-rising">▲</span>';
+    } else if (diff < -threshold) {
+        return '<span class="trend-arrow trend-falling">▼</span>';
+    } else {
+        return '<span class="trend-arrow trend-steady">▶</span>';
+    }
+}
+
 // 1. Global Variables
 let lakeChartInstance = null;
 let convertedChartInstance = null;
@@ -35,6 +50,8 @@ function checkDataFreshness(dateTimeStr, elementId) {
         el.textContent = `Updated: ${getFormattedTime()}`;
     }
 }
+
+
 
 // 5. The Mobile Chart Builder
 function createMobileChart(ctx, labels, dataPoints, labelName, color, chartId, scrubId) {
