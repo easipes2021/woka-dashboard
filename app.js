@@ -242,6 +242,7 @@ async function initApp() {
     // We use await for each to ensure they don't block each other
     try {
         await getAirTemperature();
+        await loadWaterTempData();
         await loadLakeFrancisData();
         await loadSSKPData();
         await loadHwy16Data(); // Ensure this function name matches exactly!
