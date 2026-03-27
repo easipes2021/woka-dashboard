@@ -222,3 +222,25 @@ async function initApp() {
 
 initApp();
 setInterval(initApp, 15 * 60 * 1000);
+
+// --- 8. THEME TOGGLE LOGIC ---
+const themeBtn = document.getElementById('themeToggle');
+
+if (themeBtn) {
+    // 1. Check for saved user preference on load
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // 2. Add the click listener
+    themeBtn.addEventListener('click', () => {
+        console.log("Theme toggle clicked!"); // Debug line
+        document.body.classList.toggle('dark-mode');
+        
+        // 3. Save the preference
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+} else {
+    console.error("Theme button with ID 'themeToggle' not found in HTML.");
+}
