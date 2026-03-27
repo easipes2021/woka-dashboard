@@ -148,3 +148,28 @@ canvas {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+.gauge-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: transparent;
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.gauge-link:hover {
+    background-color: var(--primary-blue);
+    color: white;
+}
+
+/* Dark mode adjustment */
+body.dark-mode .gauge-link {
+    border-color: #66b3ff;
+    color: #66b3ff;
+}
