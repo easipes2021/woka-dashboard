@@ -4,11 +4,14 @@ on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Setup Node
@@ -21,13 +24,14 @@ jobs:
           cd woka-next
           npm install
 
-      - name: Build
+      - name: Build Next.js site
         run: |
           cd woka-next
           npm run build
 
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./woka-next/out
+          publish_dir: woka-next/out
+``
