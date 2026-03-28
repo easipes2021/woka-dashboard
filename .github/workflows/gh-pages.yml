@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd woka-next
-          npm ci
+          npm install
 
       - name: Build the site
         run: |
@@ -34,7 +34,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # IMPORTANT: this MUST point to your "out" folder
           path: ./woka-next/out
 
   deploy:
