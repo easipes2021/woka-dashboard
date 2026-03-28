@@ -3,7 +3,7 @@ const nextConfig = {
   output: "export",
 
   // ✅ Your correct basePath for GitHub Pages project site
-  basePath: "/woka-dashboard/woka-next",
+  basePath: "/woka-dashboard",
 
   // ✅ Required for GitHub Pages — produces /index.html properly
   trailingSlash: true,
