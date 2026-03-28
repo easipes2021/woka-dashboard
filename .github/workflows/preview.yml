@@ -1,4 +1,4 @@
-name: Deploy Next.js preview to /docs/woka-next
+name: Build Next.js Preview into /docs/woka-next
 
 on:
   push:
@@ -6,15 +6,13 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Node
@@ -27,39 +25,21 @@ jobs:
           cd woka-next
           npm install
 
-      - name: Build static Next.js site
+      - name: Build Next.js site
         run: |
           cd woka-next
           npm run build
 
-      - name: Copy output to /docs/woka-next
+      - name: Copy output to docs/woka-next
         run: |
           rm -rf docs/woka-next
           mkdir -p docs/woka-next
           cp -r woka-next/out/* docs/woka-next/
 
-      - name: Commit preview files
+      - name: Commit and push
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add docs/woka-next
-          git commit -m "Update Next.js preview site" || echo "No changes"
+          git commit -m "Update Next.js preview" || echo "No changes to commit"
           git push
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    # ✅ REQUIRED (fixes the error you saw)
-    environment:
-      name: github-pages
-
-    steps:
-      # ✅ REQUIRED (fixes the 400 error)
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # ✅ Deploy everything in /docs
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-        
