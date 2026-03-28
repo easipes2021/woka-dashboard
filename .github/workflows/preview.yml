@@ -1,0 +1,59 @@
+name: Deploy Next.js preview to /docs/woka-next
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          cd woka-next
+          npm install
+
+      - name: Build Next.js site
+        run: |
+          cd woka-next
+          npm run build
+
+      - name: Copy output into /docs/woka-next
+        run: |
+          rm -rf docs/woka-next
+          mkdir -p docs/woka-next
+          cp -r woka-next/out/* docs/woka-next/
+
+      - name: Commit build files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add docs/woka-next
+          git commit -m "Update Next.js preview" || echo "No changes to commit"
+          git push
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    # ✅ REQUIRED — fixes your error
+    environment:
+      name: github-pages
+
+    steps:
+      - name: Deploy GitHub Pages from /docs
+        uses: actions/deploy-pages@v4
