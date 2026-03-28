@@ -2,14 +2,16 @@
 const nextConfig = {
   output: "export",
 
-  // REQUIRED for GitHub Pages project sites
+  // ✅ Your correct basePath for GitHub Pages project site
   basePath: "/woka-dashboard/woka-next",
 
-  // REQUIRED so Next.js emits index.html in each folder
+  // ✅ Required for GitHub Pages — produces /index.html properly
   trailingSlash: true,
 
-  // GitHub Pages static hosting has no image optimizer
-  images: { unoptimized: true }
+  // ✅ Prevents Next.js from trying to optimize images (not supported on GH Pages)
+  images: {
+    unoptimized: true
+  }
 };
 
 module.exports = nextConfig;
