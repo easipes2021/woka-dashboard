@@ -66,6 +66,12 @@ h1 {
   font-size: 1.2rem;
 }
 
+.card h3 {
+  margin-top: 0;
+  color: var(--primary-blue);
+  font-size: 0.9rem;
+}
+
 /* Big numbers (Stage, Temp, Flow) */
 .big-number, p {
   font-size: 2.5rem;
@@ -181,6 +187,10 @@ body.dark-mode .card {
 }
 
 body.dark-mode h2 {
+    color: #bb86fc; /* A nice purple or soft blue for dark mode headers */
+}
+
+body.dark-mode h4 {
     color: #bb86fc; /* A nice purple or soft blue for dark mode headers */
 }
 
