@@ -171,7 +171,6 @@ function ratingCurveCFS(gageHeightFt) {
     return highBranch(H);
   }
 
-  // Prevent a drop/discontinuity at the breakpoint
   const lowAtBreak = lowBranch(breakpointFt);
   const highAtBreak = highBranch(breakpointFt);
 
@@ -736,7 +735,6 @@ function initApp() {
   state.refreshTimer = setInterval(refreshAllData, CONFIG.refreshIntervalMs);
 }
 
-// Works whether the script loads before or after DOMContentLoaded
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initApp);
 } else {
