@@ -14,10 +14,16 @@
 
   <title>WOKA Streamflow Dashboard</title>
 
-  <link rel="stylesheet" href="global.css"t src="https://cdn.jsdelivr.net/npm/chart.jsscript src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fnsead>
+  <link rel="stylesheet" href="global.css" />
+
+  <!-- Chart.js + time adapter -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns" defer></script>
+  <script src="app.js?v=1" defer></script>
+</head>
 <body>
   <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
-    🌙 Theme
+    🌙 Dark Mode
   </button>
 
   <header class="page-header">
@@ -25,14 +31,13 @@
       <p class="eyebrow">WOKA Whitewater Park</p>
       <h1>WOKA Dashboard</h1>
       <p class="subheading">
-        Live river, lake, and temperature conditions for park operations and visitor awareness.
+        Live river, lake, and temperature conditions for whitewater operations and visitor awareness.
       </p>
     </div>
   </header>
 
   <main class="dashboard-shell">
     <section class="dashboard-grid" aria-label="WOKA conditions dashboard">
-
       <!-- Air Temp -->
       <article class="card metric-card">
         <div class="card-header">
@@ -48,3 +53,127 @@
           <h2>Water Temperature (Watts)</h2>
         </div>
         <div id="waterTempCurrent" class="big-number">
+          <span class="spinner" aria-hidden="true"></span>
+        </div>
+        <div id="waterTempTime" class="timestamp">Fetching water temperature...</div>
+        <a
+          href="https://waterdata.usgs.gov/monitoring-location/07195500/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gauge-link"
+        >
+          View Official Gauge
+        </a>
+      </article>
+
+      <!-- Lake Francis -->
+      <article class="card metric-card">
+        <div class="card-header">
+          <h2>Lake Francis Stage</h2>
+          <p class="card-subtitle">High: 912.00 ft / Low: 909.40 ft</p>
+        </div>
+        <div id="lakeFrancisCurrent" class="big-number">--.-- ft</div>
+        <div id="lakeFrancisTime" class="timestamp">Updated: --:--</div>
+        <a
+          href="https://waterdata.usgs.gov/monitoring-location/07195495/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gauge-link"
+        >
+          View Official Gauge
+        </a>
+      </article>
+
+      <!-- Savoy -->
+      <article class="card metric-card">
+        <div class="card-header">
+          <h2>Illinois River @ Savoy</h2>
+        </div>
+        <div id="savoyCurrent" class="big-number">-- CFS</div>
+        <div id="savoyTime" class="timestamp">Updated: --:--</div>
+        <a
+          href="https://waterdata.usgs.gov/monitoring-location/07194800/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gauge-link"
+        >
+          View Official Gauge
+        </a>
+      </article>
+
+      <!-- Hwy 16 -->
+      <article class="card metric-card">
+        <div class="card-header">
+          <h2>Illinois River @ Hwy 16</h2>
+        </div>
+        <div id="hwy16Current" class="big-number">-- CFS</div>
+        <div id="hwy16Time" class="timestamp">Updated: --:--</div>
+        <a
+          href="https://waterdata.usgs.gov/monitoring-location/07195400/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gauge-link"
+        >
+          View Official Gauge
+        </a>
+      </article>
+
+      <!-- SSKP -->
+      <article class="card metric-card">
+        <div class="card-header">
+          <h2>SSKP Flow Prediction</h2>
+          <p class="card-subtitle">Flood threshold: 800 CFS and rising</p>
+        </div>
+
+        <div id="siloamCurrent" class="big-number">--.- CFS</div>
+        <div id="siloamTime" class="timestamp">Updated: --:--</div>
+
+        <div class="mini-chart-container" aria-label="SSKP mini trend chart">
+          <canvas id="siloamChart"></canvas>
+        </div>
+
+        <a
+          href="https://waterdata.usgs.gov/monitoring-location/07195430/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="gauge-link"
+        >
+          View Source Gauge
+        </a>
+      </article>
+
+      <!-- Lake Francis 7-Day Chart -->
+      <article class="card chart-card chart-card--wide">
+        <div class="card-header card-header--left">
+          <h2>Lake Francis (7-Day Stage)</h2>
+          <p class="card-subtitle">Interactive 7-day stage history</p>
+        </div>
+
+        <div id="scrubValue" class="scrub-readout">Hover or drag to explore</div>
+
+        <div class="chart-container">
+          <canvas id="lakeFrancisChart"></canvas>
+        </div>
+
+        <div id="lakeFrancisGraphTime" class="timestamp chart-timestamp">Updated: --:--</div>
+      </article>
+
+      <!-- SSKP 7-Day Chart -->
+      <article class="card chart-card chart-card--wide">
+        <div class="card-header card-header--left">
+          <h2>SSKP 7-Day CFS Conversion</h2>
+          <p class="card-subtitle">Predicted flow based on source gauge stage</p>
+        </div>
+
+        <div id="convertedScrub" class="scrub-readout">Hover or drag to explore</div>
+
+        <div class="chart-container">
+          <canvas id="convertedChart"></canvas>
+        </div>
+
+        <div id="convertedGraphTime" class="timestamp chart-timestamp">Updated: --:--</div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
