@@ -202,11 +202,11 @@ canvas {
 }
 
 .trend-rising {
-  color: #ff4444; /* red = rising/caution */
+  color: #ff4444;
 }
 
 .trend-falling {
-  color: #00c851; /* green = dropping */
+  color: #00c851;
 }
 
 .trend-steady {
@@ -257,4 +257,3 @@ canvas {
     padding: 8px 12px;
   }
 }
-``
