@@ -1,4 +1,4 @@
- /* -----------------------------------
+/* -----------------------------------
    1) ROOT TOKENS
 ----------------------------------- */
 
@@ -47,7 +47,7 @@ body.dark-mode {
 }
 
 /* -----------------------------------
-   3) GLOBAL RESET / BASE
+   3) BASE / RESET
 ----------------------------------- */
 
 *,
@@ -88,7 +88,7 @@ a {
 }
 
 /* -----------------------------------
-   4) PAGE HEADER
+   4) HEADER
 ----------------------------------- */
 
 .page-header {
@@ -127,7 +127,7 @@ a {
 }
 
 /* -----------------------------------
-   5) THEME TOGGLE
+   5) THEME BUTTON
 ----------------------------------- */
 
 .theme-toggle {
@@ -213,7 +213,7 @@ a {
 }
 
 /* -----------------------------------
-   7) CARD TYPOGRAPHY
+   7) TYPOGRAPHY / CARD CONTENT
 ----------------------------------- */
 
 .card-header {
@@ -250,7 +250,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-wrap: balance;
 }
 
 .timestamp {
@@ -259,6 +258,10 @@ a {
   color: var(--text-muted);
   font-style: italic;
   min-height: 1.2em;
+}
+
+.chart-timestamp {
+  margin-top: 12px;
 }
 
 .scrub-readout {
@@ -296,7 +299,7 @@ a {
 }
 
 /* -----------------------------------
-   9) LINKS / BUTTON-LIKE LINKS
+   9) LINKS
 ----------------------------------- */
 
 .gauge-link {
@@ -331,7 +334,7 @@ a {
 }
 
 /* -----------------------------------
-   10) STATUS / STATE STYLES
+   10) STATES / STATUS
 ----------------------------------- */
 
 .data-delayed {
@@ -377,7 +380,7 @@ a {
 }
 
 /* -----------------------------------
-   11) RESPONSIVE BREAKPOINTS
+   11) RESPONSIVE
 ----------------------------------- */
 
 @media (max-width: 1100px) {
@@ -446,4 +449,4 @@ a {
     font-size: 1rem;
   }
 }
-                     
+``
