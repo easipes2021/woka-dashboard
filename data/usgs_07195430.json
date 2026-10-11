@@ -4,13 +4,13 @@
   "scope": "javax.xml.bind.JAXBElement$GlobalScope",
   "value": {
     "queryInfo": {
-      "queryURL": "http://nwis.waterservices.usgs.gov/nwis/iv/format=json&sites=07195430&parameterCd=00060,00065&startDT=2024-10-10T09:10Z&endDT=2026-10-10T09:10Z",
+      "queryURL": "http://nwis.waterservices.usgs.gov/nwis/iv/format=json&sites=07195430&parameterCd=00060,00065&startDT=2024-10-11T07:58Z&endDT=2026-10-11T07:58Z",
       "criteria": {
         "locationParam": "[ALL:07195430]",
         "variableParam": "[00060, 00065]",
         "timeParam": {
-          "beginDateTime": "2024-10-10T09:10:00.000",
-          "endDateTime": "2026-10-10T09:10:00.000"
+          "beginDateTime": "2024-10-11T07:58:00.000",
+          "endDateTime": "2026-10-11T07:58:00.000"
         },
         "parameter": []
       },
@@ -20,7 +20,7 @@
           "title": "filter:sites"
         },
         {
-          "value": "[mode=RANGE, modifiedSince=null] interval={INTERVAL[2024-10-10T09:10:00.000Z/2026-10-10T09:10:00.000Z]}",
+          "value": "[mode=RANGE, modifiedSince=null] interval={INTERVAL[2024-10-11T07:58:00.000Z/2026-10-11T07:58:00.000Z]}",
           "title": "filter:timeRange"
         },
         {
@@ -28,11 +28,11 @@
           "title": "filter:methodId"
         },
         {
-          "value": "2026-10-10T09:10:36.947Z",
+          "value": "2026-10-11T07:58:36.368Z",
           "title": "requestDT"
         },
         {
-          "value": "74cf2720-c48a-11f1-859c-4cd98f86fad9",
+          "value": "8ff4ddf0-c549-11f1-859c-4cd98f86fad9",
           "title": "requestId"
         },
         {
@@ -128,643 +128,6 @@
         "values": [
           {
             "value": [
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T04:15:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T04:30:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T04:45:00.000-05:00"
-              },
-              {
-                "value": "129",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T05:00:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T05:15:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T05:30:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T05:45:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T06:00:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T06:15:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T06:30:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T06:45:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T07:00:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T07:15:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T07:30:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T07:45:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T08:00:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T08:15:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T08:30:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T08:45:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T09:00:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T09:15:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T09:30:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T09:45:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T10:00:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T10:15:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T10:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T10:45:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T11:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T11:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T11:30:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T11:45:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T12:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T12:15:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T12:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T12:45:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T13:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T13:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T13:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T13:45:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T14:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T14:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T14:30:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T14:45:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T15:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T15:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T15:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T15:45:00.000-05:00"
-              },
-              {
-                "value": "139",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T16:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T16:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T16:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T16:45:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T17:00:00.000-05:00"
-              },
-              {
-                "value": "139",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T17:15:00.000-05:00"
-              },
-              {
-                "value": "139",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T17:30:00.000-05:00"
-              },
-              {
-                "value": "139",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T17:45:00.000-05:00"
-              },
-              {
-                "value": "142",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T18:00:00.000-05:00"
-              },
-              {
-                "value": "139",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T18:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T18:30:00.000-05:00"
-              },
-              {
-                "value": "139",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T18:45:00.000-05:00"
-              },
-              {
-                "value": "139",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T19:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T19:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T19:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T19:45:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T20:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T20:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T20:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T20:45:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T21:00:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T21:15:00.000-05:00"
-              },
-              {
-                "value": "139",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T21:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T21:45:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T22:00:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T22:15:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T22:30:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T22:45:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T23:00:00.000-05:00"
-              },
-              {
-                "value": "137",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T23:15:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T23:30:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T23:45:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T00:00:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T00:15:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T00:30:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T00:45:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T01:00:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T01:15:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T01:30:00.000-05:00"
-              },
-              {
-                "value": "135",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T01:45:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T02:00:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T02:15:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T02:30:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T02:45:00.000-05:00"
-              },
               {
                 "value": "133",
                 "qualifiers": [
@@ -238956,643 +238319,6 @@
         "values": [
           {
             "value": [
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T04:15:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T04:30:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T04:45:00.000-05:00"
-              },
-              {
-                "value": "2.21",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T05:00:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T05:15:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T05:30:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T05:45:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T06:00:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T06:15:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T06:30:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T06:45:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T07:00:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T07:15:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T07:30:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T07:45:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T08:00:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T08:15:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T08:30:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T08:45:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T09:00:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T09:15:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T09:30:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T09:45:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T10:00:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T10:15:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T10:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T10:45:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T11:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T11:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T11:30:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T11:45:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T12:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T12:15:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T12:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T12:45:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T13:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T13:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T13:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T13:45:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T14:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T14:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T14:30:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T14:45:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T15:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T15:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T15:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T15:45:00.000-05:00"
-              },
-              {
-                "value": "2.26",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T16:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T16:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T16:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T16:45:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T17:00:00.000-05:00"
-              },
-              {
-                "value": "2.26",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T17:15:00.000-05:00"
-              },
-              {
-                "value": "2.26",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T17:30:00.000-05:00"
-              },
-              {
-                "value": "2.26",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T17:45:00.000-05:00"
-              },
-              {
-                "value": "2.27",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T18:00:00.000-05:00"
-              },
-              {
-                "value": "2.26",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T18:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T18:30:00.000-05:00"
-              },
-              {
-                "value": "2.26",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T18:45:00.000-05:00"
-              },
-              {
-                "value": "2.26",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T19:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T19:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T19:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T19:45:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T20:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T20:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T20:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T20:45:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T21:00:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T21:15:00.000-05:00"
-              },
-              {
-                "value": "2.26",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T21:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T21:45:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T22:00:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T22:15:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T22:30:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T22:45:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T23:00:00.000-05:00"
-              },
-              {
-                "value": "2.25",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T23:15:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T23:30:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-10T23:45:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T00:00:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T00:15:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T00:30:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T00:45:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T01:00:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T01:15:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T01:30:00.000-05:00"
-              },
-              {
-                "value": "2.24",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T01:45:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T02:00:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T02:15:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T02:30:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-11T02:45:00.000-05:00"
-              },
               {
                 "value": "2.23",
                 "qualifiers": [
@@ -728738,6 +727464,650 @@
                   "P"
                 ],
                 "dateTime": "2026-10-10T03:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T03:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T03:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T04:00:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T04:15:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T04:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T04:45:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T05:00:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T05:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T05:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T05:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T06:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T06:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T06:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T06:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T07:00:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T07:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T07:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T07:45:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T08:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T08:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T08:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T08:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T09:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T09:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T09:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T09:45:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T10:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T10:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T10:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T10:45:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T11:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T11:15:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T11:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T11:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T12:00:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T12:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T12:30:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T12:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T13:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T13:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T13:30:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T13:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T14:00:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T14:15:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T14:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T14:45:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T15:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T15:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T15:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T15:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T16:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T16:15:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T16:30:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T16:45:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T17:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T17:15:00.000-05:00"
+              },
+              {
+                "value": "2.36",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T17:30:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T17:45:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T18:00:00.000-05:00"
+              },
+              {
+                "value": "2.36",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T18:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T18:30:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T18:45:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T19:00:00.000-05:00"
+              },
+              {
+                "value": "2.35",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T19:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T19:30:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T19:45:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T20:00:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T20:15:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T20:30:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T20:45:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T21:00:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T21:15:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T21:30:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T21:45:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T22:00:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T22:15:00.000-05:00"
+              },
+              {
+                "value": "2.32",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T22:30:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T22:45:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T23:00:00.000-05:00"
+              },
+              {
+                "value": "2.32",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T23:15:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T23:30:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-10T23:45:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T00:00:00.000-05:00"
+              },
+              {
+                "value": "2.32",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T00:15:00.000-05:00"
+              },
+              {
+                "value": "2.32",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T00:30:00.000-05:00"
+              },
+              {
+                "value": "2.32",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T00:45:00.000-05:00"
+              },
+              {
+                "value": "2.32",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T01:00:00.000-05:00"
+              },
+              {
+                "value": "2.32",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T01:15:00.000-05:00"
+              },
+              {
+                "value": "2.31",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T01:30:00.000-05:00"
+              },
+              {
+                "value": "2.32",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T01:45:00.000-05:00"
+              },
+              {
+                "value": "2.31",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T02:00:00.000-05:00"
+              },
+              {
+                "value": "2.31",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-11T02:15:00.000-05:00"
               }
             ],
             "qualifier": [
