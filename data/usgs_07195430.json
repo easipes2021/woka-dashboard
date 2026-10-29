@@ -4,13 +4,13 @@
   "scope": "javax.xml.bind.JAXBElement$GlobalScope",
   "value": {
     "queryInfo": {
-      "queryURL": "http://nwis.waterservices.usgs.gov/nwis/iv/format=json&sites=07195430&parameterCd=00060,00065&startDT=2024-10-29T07:44Z&endDT=2026-10-29T07:44Z",
+      "queryURL": "http://nwis.waterservices.usgs.gov/nwis/iv/format=json&sites=07195430&parameterCd=00060,00065&startDT=2024-10-29T09:02Z&endDT=2026-10-29T09:02Z",
       "criteria": {
         "locationParam": "[ALL:07195430]",
         "variableParam": "[00060, 00065]",
         "timeParam": {
-          "beginDateTime": "2024-10-29T07:44:00.000",
-          "endDateTime": "2026-10-29T07:44:00.000"
+          "beginDateTime": "2024-10-29T09:02:00.000",
+          "endDateTime": "2026-10-29T09:02:00.000"
         },
         "parameter": []
       },
@@ -20,7 +20,7 @@
           "title": "filter:sites"
         },
         {
-          "value": "[mode=RANGE, modifiedSince=null] interval={INTERVAL[2024-10-29T07:44:00.000Z/2026-10-29T07:44:00.000Z]}",
+          "value": "[mode=RANGE, modifiedSince=null] interval={INTERVAL[2024-10-29T09:02:00.000Z/2026-10-29T09:02:00.000Z]}",
           "title": "filter:timeRange"
         },
         {
@@ -28,11 +28,11 @@
           "title": "filter:methodId"
         },
         {
-          "value": "2026-10-29T07:44:51.716Z",
+          "value": "2026-10-29T09:02:40.061Z",
           "title": "requestDT"
         },
         {
-          "value": "9fdc4e20-d36c-11f1-8f5f-4cd98f8df011",
+          "value": "7e695fc0-d377-11f1-8f5f-4cd98f8df011",
           "title": "requestId"
         },
         {
@@ -128,48 +128,6 @@
         "values": [
           {
             "value": [
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T02:45:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T03:00:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T03:15:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T03:30:00.000-05:00"
-              },
-              {
-                "value": "133",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T03:45:00.000-05:00"
-              },
-              {
-                "value": "131",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T04:00:00.000-05:00"
-              },
               {
                 "value": "133",
                 "qualifiers": [
@@ -226286,48 +226244,6 @@
         "values": [
           {
             "value": [
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T02:45:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T03:00:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T03:15:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T03:30:00.000-05:00"
-              },
-              {
-                "value": "2.23",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T03:45:00.000-05:00"
-              },
-              {
-                "value": "2.22",
-                "qualifiers": [
-                  "A"
-                ],
-                "dateTime": "2024-10-29T04:00:00.000-05:00"
-              },
               {
                 "value": "2.23",
                 "qualifiers": [
@@ -716138,6 +716054,34 @@
                   "P"
                 ],
                 "dateTime": "2026-10-29T02:15:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-29T02:30:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-29T02:45:00.000-05:00"
+              },
+              {
+                "value": "2.33",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-29T03:00:00.000-05:00"
+              },
+              {
+                "value": "2.34",
+                "qualifiers": [
+                  "P"
+                ],
+                "dateTime": "2026-10-29T03:15:00.000-05:00"
               }
             ],
             "qualifier": [
